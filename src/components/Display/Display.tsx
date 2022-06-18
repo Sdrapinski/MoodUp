@@ -1,14 +1,16 @@
 import React from "react";
 import "./Display.scss";
-const Display = () => {
+import { ChuckNorrisJoke } from "../../interfaces/MainScreenInterface";
+
+interface DisplayProps {
+  joke: ChuckNorrisJoke;
+}
+
+const Display: React.FC<DisplayProps> = (props) => {
   return (
     <div className="Display">
       <img className="Display__image" src="./chuck.jpeg" alt="Chuck Noris" />
-      <p className="Display__joke">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi
-        distinctio ad temporibus nisi accusamus animi architecto incidunt
-        adipisci sint! .
-      </p>
+      <p className="Display__joke">{props.joke.joke}</p>
     </div>
   );
 };
