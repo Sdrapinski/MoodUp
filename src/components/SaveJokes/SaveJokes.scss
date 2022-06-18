@@ -1,4 +1,13 @@
 .SaveJokes{
+    width: 100%;
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    .SaveJokes-input{
+        border: none;
+        width: 30px;
+        padding: 0;
+        margin: 0;
+    }
 }

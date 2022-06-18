@@ -1,5 +1,5 @@
 export interface ChuckNorrisJoke {
-  categories: string[];
+  categories: string[] | [];
   id: number;
   joke: string;
 }

@@ -1,6 +1,6 @@
 .Form{
    width: 100%;
-    .From__select{
+    .Form__select{
         width: 100%;
         margin: 0px 10px;
     }
@@ -10,6 +10,16 @@
     }
     .Form__Button-Submit{
         width: 100%;
+        padding: 10px;
         margin: 0px 10px;
+        background-color: #343950;
+        color: white;
+        font-size: 16px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    .Form__Select-container{
+        display: block;
+        width: 100%;
     }
 }

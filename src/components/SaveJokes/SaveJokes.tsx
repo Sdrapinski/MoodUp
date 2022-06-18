@@ -6,10 +6,10 @@ const SaveJokes = () => {
     <div className="SaveJokes">
       <div>
         <button>-</button>
-        <span>0</span>
+        <input type="number" value="0" className="SaveJokes-input" />
         <button>+</button>
       </div>
-      <div>Save Jokes</div>
+      <button>Save Jokes</button>
     </div>
   );
 };
