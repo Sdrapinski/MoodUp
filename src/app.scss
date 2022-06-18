@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.App {
+   
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Flex__Container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
