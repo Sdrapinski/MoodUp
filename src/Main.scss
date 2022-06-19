@@ -1,0 +1,37 @@
+@import url(app.scss);
+@import url(./components/MainScreen/MainScreen.scss);
+@import url(./components/Display/Display.scss);
+@import url(./components/Form/Form.scss);
+@import url(./components/SaveJokes/SaveJokes.scss);
+
+@media screen and (max-width: 1300px) {
+    .MainScreen{
+        height: 85vh;
+        width: 60vw;
+        padding: 60px;
+    }
+  }
+@media screen and (max-width: 700px) {
+    .MainScreen{
+       height: 80vh;
+        width: 80vw;
+        padding: 50px;
+    }
+  }
+@media screen and (max-width: 500px) {
+    .MainScreen{
+        height: 95vh;
+        width: 90vw;
+        font-size: 14px;
+    }
+  }
+@media screen and (max-height: 700px) {
+    .MainScreen{
+        height: 100vh;
+        width: 100vw;
+       
+    }
+    *{
+        font-size: 12px;
+    }
+  }

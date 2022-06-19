@@ -1,16 +1,20 @@
 import React from "react";
-import "./Display.scss";
-import { ChuckNorrisJoke } from "../../interfaces/MainScreenInterface";
 
 interface DisplayProps {
-  joke: ChuckNorrisJoke;
+  joke: string;
+  name: string;
 }
 
 const Display: React.FC<DisplayProps> = (props) => {
+  console.log(props.joke);
   return (
     <div className="Display">
-      <img className="Display__image" src="./chuck.jpeg" alt="Chuck Noris" />
-      <p className="Display__joke">{props.joke.joke}</p>
+      <img
+        className="Display__image"
+        src={props.name === "" ? "./chuck.jpeg" : "./unknownPerson.jpg"}
+        alt="Chuck Noris"
+      />
+      <p className="Display__joke">{props.joke}</p>
     </div>
   );
 };

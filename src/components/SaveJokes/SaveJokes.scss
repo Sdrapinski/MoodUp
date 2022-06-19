@@ -1,13 +1,68 @@
 .SaveJokes{
+   
     width: 100%;
     margin-top: 20px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     .SaveJokes-input{
+        font-size: 18px;
         border: none;
-        width: 30px;
+        min-width: 10px;
+        max-width: 30px;
         padding: 0;
         margin: 0;
+        background-color: transparent;
+        height: 100%;
     }
+    .SaveJokes-input:focus{
+        outline: none;
+    }
+    .SaveJokes-input::-webkit-outer-spin-button,
+    .SaveJokes-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    /* Firefox */
+    .SaveJokes-input[type=number] {
+     -moz-appearance: textfield;
+    }
+    .SaveJokes__InputContainer{
+        margin-left:10px ;
+        border-radius:10px ;
+        display: flex;
+        justify-content: space-between;
+        background-color: #f5f6f8;
+        width: 250px;
+        height: 60px;
+        align-items: center;
+        padding: 0 20px;
+        button{
+            background-color: transparent;
+            cursor: pointer;
+            border: none;
+        }
+    }
+
+    .SaveJokes__Button{
+        margin-left: 10px;
+        font-weight: 500;
+        color: #3d4257 ;
+        border: none;
+        border-radius: 10px;     
+        font-size: 17px;
+        width: 100%;
+    }
+    .wrongAmount{
+        background-color:#f39a9a ;
+    }
+    .goodAmount{
+        background-color: #3d4257;
+        color: white;
+        cursor: pointer;
+    }
+  svg{
+    color:#3d4257;
+  }
 }

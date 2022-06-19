@@ -3,17 +3,16 @@ import React, { useState, useEffect } from "react";
 import Display from "../Display/Display";
 import Form from "../Form/Form";
 import SaveJokes from "../SaveJokes/SaveJokes";
-import "./MainScreen.scss";
+
 import { SelectChangeEvent } from "@mui/material/Select";
 import {
   ResponseJokeResult,
-  ChuckNorrisJoke,
   Categories,
   ResponseCategoriesResult,
 } from "../../interfaces/MainScreenInterface";
 
 const MainScreen = () => {
-  const [Joke, setJoke] = useState<ChuckNorrisJoke>();
+  const [Joke, setJoke] = useState("");
   const [Categories, setCategories] = useState<Categories>();
   const [Name, setName] = useState<string>("");
   const [Category, setCategory] = useState("");
@@ -28,20 +27,23 @@ const MainScreen = () => {
   const HandleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (Name.length === 0 && Category.length === 0) {
+      let data;
+
       axios
         .get("http://api.icndb.com/jokes/random")
         .then((response) => {
-          const data = response.data.value;
+          data = response.data.value.joke;
           console.log(data);
           setJoke(data);
         })
+        .then((x) => console.log("xd" + Joke))
         .catch((err) => console.warn(err));
     }
     if (Category.length !== 0 && Name.length === 0) {
       axios
         .get(`http://api.icndb.com/jokes/random?limitTo=[${Category}]`)
         .then((response) => {
-          const data = response.data.value;
+          const data = response.data.value.joke;
           setJoke(data);
         })
         .catch((err) => console.warn(err));
@@ -57,7 +59,7 @@ const MainScreen = () => {
       axios
         .get(url)
         .then((response) => {
-          const data = response.data.value;
+          const data = response.data.value.joke;
           setJoke(data);
         })
         .catch((err) => console.warn(err));
@@ -72,7 +74,7 @@ const MainScreen = () => {
       axios
         .get(url)
         .then((response) => {
-          const data = response.data.value;
+          const data = response.data.value.joke;
           setJoke(data);
         })
         .catch((err) => console.warn(err));
@@ -83,7 +85,7 @@ const MainScreen = () => {
     axios
       .get<ResponseJokeResult>("http://api.icndb.com/jokes/random")
       .then((response) => {
-        const data = response.data.value;
+        const data = response.data.value.joke;
         setJoke(data);
       })
       .catch((err) => console.warn(err));
@@ -98,7 +100,7 @@ const MainScreen = () => {
 
   return (
     <div className="MainScreen Flex__Container">
-      <Display joke={Joke || { id: 0, categories: [], joke: "Error" }} />
+      <Display name={Name} joke={Joke || "Error"} />
       <Form
         categories={Categories || { value: ["Error"] }}
         category={Category}

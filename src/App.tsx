@@ -1,5 +1,6 @@
 import React from "react";
-import "./app.scss";
+
+import "./Main.scss";
 import MainScreen from "./components/MainScreen/MainScreen";
 
 function App() {
