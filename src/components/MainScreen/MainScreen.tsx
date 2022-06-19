@@ -51,7 +51,7 @@ const MainScreen = () => {
       }
     }
     axios
-      .get(url2)
+      .get<ResponseJokeResult>(url2)
       .then((response) => {
         const data = response.data.value.joke;
         setJoke(data);

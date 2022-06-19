@@ -1,8 +1,34 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { ResponseMultiJokeResult } from "../../interfaces/MainScreenInterface";
 
 const SaveJokes = () => {
   const [JokeAmount, setJokeAmount] = useState<number>(0);
   const [isFocus, setIsFocus] = useState(false);
+
+  const MoreJokesUrl = "http://api.icndb.com/jokes/random/";
+
+  const GetJokesToSave = () => {
+    axios
+      .get<ResponseMultiJokeResult>(`${MoreJokesUrl}${JokeAmount}`)
+      .then((resp) => {
+        let DataToSave = resp.data.value;
+        let jokesToSave: string[] = [];
+
+        DataToSave.forEach((joke) => {
+          jokesToSave.push(joke.joke);
+        });
+
+        var Tosave = new Blob(jokesToSave, {
+          type: "text/plain;charset=utf-8",
+        });
+
+        const link = document.createElement("a");
+        link.href = window.URL.createObjectURL(Tosave);
+        link.download = `jokes.txt`;
+        link.click();
+      });
+  };
 
   const handleJokeAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setJokeAmount(parseFloat(e.currentTarget.value));
@@ -99,6 +125,7 @@ const SaveJokes = () => {
             ? "SaveJokes__Button goodAmount"
             : "SaveJokes__Button"
         }
+        onClick={GetJokesToSave}
       >
         Save Jokes
       </button>

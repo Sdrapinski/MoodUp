@@ -8,6 +8,10 @@ export interface ResponseJokeResult {
   status: number;
   value: ChuckNorrisJoke;
 }
+export interface ResponseMultiJokeResult {
+  status: number;
+  value: ChuckNorrisJoke[];
+}
 
 export interface Categories {
   value: string[];
