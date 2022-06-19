@@ -9,25 +9,27 @@ const SaveJokes = () => {
   const MoreJokesUrl = "http://api.icndb.com/jokes/random/";
 
   const GetJokesToSave = () => {
-    axios
-      .get<ResponseMultiJokeResult>(`${MoreJokesUrl}${JokeAmount}`)
-      .then((resp) => {
-        let DataToSave = resp.data.value;
-        let jokesToSave: string[] = [];
+    if (JokeAmount > 0 && JokeAmount <= 100) {
+      axios
+        .get<ResponseMultiJokeResult>(`${MoreJokesUrl}${JokeAmount}`)
+        .then((resp) => {
+          let DataToSave = resp.data.value;
+          let jokesToSave: string[] = [];
 
-        DataToSave.forEach((joke) => {
-          jokesToSave.push(joke.joke);
+          DataToSave.forEach((joke) => {
+            jokesToSave.push(joke.joke);
+          });
+
+          var Tosave = new Blob(jokesToSave, {
+            type: "text/plain;charset=utf-8",
+          });
+
+          const link = document.createElement("a");
+          link.href = window.URL.createObjectURL(Tosave);
+          link.download = `jokes.txt`;
+          link.click();
         });
-
-        var Tosave = new Blob(jokesToSave, {
-          type: "text/plain;charset=utf-8",
-        });
-
-        const link = document.createElement("a");
-        link.href = window.URL.createObjectURL(Tosave);
-        link.download = `jokes.txt`;
-        link.click();
-      });
+    }
   };
 
   const handleJokeAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
