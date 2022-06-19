@@ -17,6 +17,8 @@ const MainScreen = () => {
   const [Name, setName] = useState<string>("");
   const [Category, setCategory] = useState("");
 
+  const url = `http://api.icndb.com/jokes/random`;
+
   const HandleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.currentTarget.value);
   };
@@ -26,64 +28,40 @@ const MainScreen = () => {
 
   const HandleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (Name.length === 0 && Category.length === 0) {
-      let data;
-
-      axios
-        .get("http://api.icndb.com/jokes/random")
-        .then((response) => {
-          data = response.data.value.joke;
-          console.log(data);
-          setJoke(data);
-        })
-        .then((x) => console.log("xd" + Joke))
-        .catch((err) => console.warn(err));
-    }
+    // 0 || 0
+    let url2 = url;
     if (Category.length !== 0 && Name.length === 0) {
-      axios
-        .get(`http://api.icndb.com/jokes/random?limitTo=[${Category}]`)
-        .then((response) => {
-          const data = response.data.value.joke;
-          setJoke(data);
-        })
-        .catch((err) => console.warn(err));
+      url2 = `${url}?limitTo=[${Category}]`;
     }
     if (Category.length === 0 && Name.length !== 0) {
       const NameArray: string[] = Name.split(" ");
-      let url;
       if (NameArray.length > 1) {
-        url = `http://api.icndb.com/jokes/random?firstName=${NameArray[0]}&lastName=${NameArray[1]}`;
+        url2 = `${url}?firstName=${NameArray[0]}&lastName=${NameArray[1]}`;
       } else {
-        url = `http://api.icndb.com/jokes/random?firstName=${NameArray[0]}&lastName=`;
+        url2 = `${url}?firstName=${NameArray[0]}&lastName=`;
       }
-      axios
-        .get(url)
-        .then((response) => {
-          const data = response.data.value.joke;
-          setJoke(data);
-        })
-        .catch((err) => console.warn(err));
-    } else {
-      const NameArray: string[] = Name.split(" ");
-      let url;
-      if (NameArray.length > 1) {
-        url = `http://api.icndb.com/jokes/random?firstName=${NameArray[0]}&limitTo=[${Category}]&lastName=${NameArray[1]}`;
-      } else {
-        url = `http://api.icndb.com/jokes/random?firstName=${NameArray[0]}&limitTo=[${Category}]&lastName=`;
-      }
-      axios
-        .get(url)
-        .then((response) => {
-          const data = response.data.value.joke;
-          setJoke(data);
-        })
-        .catch((err) => console.warn(err));
     }
+    if (Category.length !== 0 && Name.length !== 0) {
+      const NameArray: string[] = Name.split(" ");
+
+      if (NameArray.length > 1) {
+        url2 = `${url}?firstName=${NameArray[0]}&limitTo=[${Category}]&lastName=${NameArray[1]}`;
+      } else {
+        url2 = `${url}?firstName=${NameArray[0]}&limitTo=[${Category}]&lastName=`;
+      }
+    }
+    axios
+      .get(url2)
+      .then((response) => {
+        const data = response.data.value.joke;
+        setJoke(data);
+      })
+      .catch((err) => console.warn(err));
   };
 
   useEffect(() => {
     axios
-      .get<ResponseJokeResult>("http://api.icndb.com/jokes/random")
+      .get<ResponseJokeResult>(url)
       .then((response) => {
         const data = response.data.value.joke;
         setJoke(data);

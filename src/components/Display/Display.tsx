@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 interface DisplayProps {
   joke: string;
@@ -6,7 +7,6 @@ interface DisplayProps {
 }
 
 const Display: React.FC<DisplayProps> = (props) => {
-  console.log(props.joke);
   return (
     <div className="Display">
       <img
