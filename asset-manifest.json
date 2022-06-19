@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/MoodUp/static/css/main.cad7471e.css",
-    "main.js": "/MoodUp/static/js/main.07666879.js",
+    "main.js": "/MoodUp/static/js/main.b252946b.js",
     "index.html": "/MoodUp/index.html",
     "main.cad7471e.css.map": "/MoodUp/static/css/main.cad7471e.css.map",
-    "main.07666879.js.map": "/MoodUp/static/js/main.07666879.js.map"
+    "main.b252946b.js.map": "/MoodUp/static/js/main.b252946b.js.map"
   },
   "entrypoints": [
     "static/css/main.cad7471e.css",
-    "static/js/main.07666879.js"
+    "static/js/main.b252946b.js"
   ]
 }
